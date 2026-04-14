@@ -597,6 +597,8 @@ function updateQty(id){
   let v=parseInt(input.value)||0;
   v=Math.max(0,Math.min(v,maxQty[id]));
   qty[id]=v;
+  // 上限・下限を超えていたら入力欄に反映
+  if(input.value!=='' && parseInt(input.value)!==v) input.value=v;
   const sub=v>0?v*prices[id]:0;
   document.getElementById('sub-'+id).textContent=sub>0?sub.toLocaleString():'0';
   updateAll();
